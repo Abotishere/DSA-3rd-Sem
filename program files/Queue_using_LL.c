@@ -57,7 +57,9 @@ int dequeue(){
     int dequeued_element = temp->data;
     front = front->next;
     if (front == NULL) rear = NULL; // Queue is now empty
-    free(temp);
+    free(temp); 
+    // or we can do
+    // temp->next = NULL;
     size--;
     return dequeued_element;
 }
