@@ -37,11 +37,6 @@ void insert(int item, int n){
             }
             ptr = ptr->next;
         }
-        if (ptr == NULL) {
-            printf("Invalid input\n");
-            free(node1);
-            return;
-        }
         node1->next = ptr->next;
         ptr->next = node1;
     }
