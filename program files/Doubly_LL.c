@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node{
     int data;
@@ -21,7 +22,32 @@ node* createNew(int dat){
 }
 
 void insert(int dat, int n){
+    // invalid input
+    if (n < 1){
+        printf("Invalid position. Please enter a valid position.\n");
+        return;
+    }
+
     node* node1 = createNew(dat);
+
+    // when list is empty
+    if (!head){
+        // this way no matter what the value of n be
+        // node1 will always be the first node
+        printf("List is empty. Creating list.\n");
+        head = node1;
+        printf("%d inserted as first element.\n",dat);
+        return;
+    }
+
+    //when n = 1 (first position)
+    if (n == 1){
+        head->prev = node1;
+        node1->next = head;
+        head = node1;
+        return;
+    }
+
     // n th position
     node* ptr = head;
     for(int i = 1; i < n - 1; i++){
@@ -33,6 +59,7 @@ void insert(int dat, int n){
     }
     node1->prev = ptr;
     node1->next = ptr->next;
-    ptr->next = ptr;
+    (ptr->next)->prev = node1;
+    ptr->next = node1;
     return;
 }
