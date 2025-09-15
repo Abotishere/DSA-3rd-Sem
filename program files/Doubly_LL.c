@@ -20,6 +20,19 @@ node* createNew(int dat){
     return new;
 }
 
-void insert(int dat){
-    
+void insert(int dat, int n){
+    node* node1 = createNew(dat);
+    // n th position
+    node* ptr = head;
+    for(int i = 1; i < n - 1; i++){
+        ptr = ptr->next;
+        if (ptr == NULL){
+            printf("Position out of order.\n");
+            return;
+        }
+    }
+    node1->prev = ptr;
+    node1->next = ptr->next;
+    ptr->next = ptr;
+    return;
 }
