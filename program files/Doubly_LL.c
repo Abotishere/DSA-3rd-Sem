@@ -63,3 +63,49 @@ void insert(int dat, int n){
     ptr->next = node1;
     return;
 }
+
+void Delete(int n){
+    if (head == NULL){
+        printf("Empty list.\n");
+        return;
+    }
+
+    if (n < 1) {
+        printf("*Invalid position.\n");
+        return;
+    }
+
+    node* current = head;
+
+    if (n == 1){
+        head = current->next;
+        if (head != NULL) {
+            head->prev = NULL;
+        }
+        printf("Deleted data: %d\n", current->data);
+        free(current);
+        return;
+    }
+
+    for (int i = 1; i < n - 1; i++){
+        if (current == NULL || current->next == NULL){
+            printf("Position invalid.\n");
+            return;
+        }
+        current = current->next;
+    }
+
+    node* temp = current->next;
+    if (temp == NULL) {
+        printf("Position invalid.\n");
+        return;
+    }
+
+    current->next = temp->next;
+    if (temp->next != NULL) {
+        temp->next->prev = current;
+    }
+
+    printf("Deleted item: %d\n", temp->data);
+    free(temp);
+}
