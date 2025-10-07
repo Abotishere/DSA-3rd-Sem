@@ -59,7 +59,9 @@ void insert(int dat, int n){
     }
     node1->prev = ptr;
     node1->next = ptr->next;
-    (ptr->next)->prev = node1;
+    if (ptr->next != NULL) { // Check if ptr->next is not NULL
+        (ptr->next)->prev = node1;
+    }
     ptr->next = node1;
     return;
 }
@@ -108,4 +110,52 @@ void Delete(int n){
 
     printf("Deleted item: %d\n", temp->data);
     free(temp);
+}
+
+void display(){
+    if (head == NULL){
+        printf("Empty list.\n");
+        return;
+    }
+
+    node* temp = head;
+    printf("Current list: \n");
+    while (temp != NULL){
+        printf("%d <-> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+int main(){
+    int choice, elem, pos;
+    printf("Choices:\n1. Insert\n2. Delete\n3. View\n4. Exit\n");
+    while (1){
+        printf("Enter a choice: ");
+        scanf("%d", &choice);
+        if (choice == 4){
+            printf("Exiting...\n");
+            break;
+        }
+        switch (choice){
+            case 1:
+                printf("Enter element to insert: ");
+                scanf("%d", &elem);
+                printf("Enter its position: ");
+                scanf("%d", &pos);
+                insert(elem, pos);
+                break;
+            case 2:
+                printf("Enter position to delete: ");
+                scanf("%d", &pos);
+                Delete(pos);
+                break;
+            case 3:
+                display();
+                break;
+            default:
+                printf("Invalid choice. Please enter 1-4.\n");
+        }
+    }
+    return 0;
 }
