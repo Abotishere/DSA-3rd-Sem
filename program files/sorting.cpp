@@ -49,32 +49,30 @@ void bubbleSort(int arr[], int length){
     // sorted
 }
 
-int main(){
+void printArray(int arr[], int length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        printf("%d, ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
     int myArr1[] = {1, 8, 9, 4, 5, 7, 1, 4, 5, 2, 9, 3}; // length = 12
     int myArr2[] = {4, 1, 9, 5, 2, 8, 3, 1, 7, 4, 9, 5}; // length = 12
     int myArr3[] = {7, 3, 1, 9, 4, 2, 8, 5, 1, 9, 4, 5}; // length = 12
 
     printf("Selection Sort:\n");
     selectionSort(myArr1, 12);
-    for (int i = 0; i < 12; i++)
-    {
-        printf("%d, ", myArr1[i]);
-    }
-    printf("\n");
+    printArray(myArr1, 12);
 
     printf("Insertion Sort:\n");
     insertionSort(myArr2, 12);
-    for (int i = 0; i < 12; i++)
-    {
-        printf("%d, ", myArr2[i]);
-    }
-    printf("\n");
+    printArray(myArr2, 12);
     
     printf("Bubble Sort:\n");
     bubbleSort(myArr3, 12);
-    for (int i = 0; i < 12; i++)
-    {
-        printf("%d, ", myArr3[i]);
-    }
-    printf("\n");
+    printArray(myArr3, 12);
 }
